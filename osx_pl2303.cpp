@@ -407,7 +407,8 @@ IOReturn nl_bjaelectronics_driver_PL2303::privateWatchState( PortInfo_t *port, U
         
 		rtn = fCommandGate->commandSleep((void *)&port->State);		
         
-		fCommandGate->retain();
+		fCommandGate->release();
+		release();
 		
 		if (rtn == THREAD_TIMED_OUT)
 		{
@@ -420,7 +421,6 @@ IOReturn nl_bjaelectronics_driver_PL2303::privateWatchState( PortInfo_t *port, U
 				break;
 			}
 		}
-		release();
 		
     }/* end for */
 
@@ -1288,7 +1288,7 @@ enum {                                  // messageType for the callback routines
 
 IOReturn nl_bjaelectronics_driver_PL2303::message( UInt32 type, IOService *provider,  void *argument)
 {
-IOReturn err = kIOReturnSuccess;
+	IOReturn err = kIOReturnSuccess;
     DEBUG_IOLog(4,"%s(%p)::message %p\n", getName(), this, type);
 
 	switch ( type )
@@ -1435,15 +1435,16 @@ Fail:
 UInt32 nl_bjaelectronics_driver_PL2303::readPortState( PortInfo_t *port )
 {
     UInt32              returnState;
-	DEBUG_IOLog(6,"nl_bjaelectronics_driver_PL2303::readPortState IOLockLock( port->serialRequestLock );\n" );
+	//DEBUG_IOLog(6,"nl_bjaelectronics_driver_PL2303::readPortState IOLockLock( port->serialRequestLock );\n" );
 
-    IOLockLock( port->serialRequestLock );
+	// port->State is never inconsistent, so no need to lock for read.
+    //IOLockLock( port->serialRequestLock );
 	DEBUG_IOLog(6,"nl_bjaelectronics_driver_PL2303::readPortState port->State\n", returnState );
 
 	returnState = port->State;
-	DEBUG_IOLog(6,"nl_bjaelectronics_driver_PL2303::readPortState IOLockUnLock( port->serialRequestLock );\n" );
+	//DEBUG_IOLog(6,"nl_bjaelectronics_driver_PL2303::readPortState IOLockUnLock( port->serialRequestLock );\n" );
 
-	IOLockUnlock( port->serialRequestLock);
+	//IOLockUnlock( port->serialRequestLock);
 	
 	DEBUG_IOLog(6,"nl_bjaelectronics_driver_PL2303::readPortState returnstate: %p \n", returnState );
 	
@@ -1495,10 +1496,6 @@ void nl_bjaelectronics_driver_PL2303::changeState( PortInfo_t *port, UInt32 stat
 	}
 
 
-	DEBUG_IOLog(6,"nl_bjaelectronics_driver_PL2303::changeState IOLockUnLock( port->serialRequestLock );\n" );
-		
-    IOLockUnlock( port->serialRequestLock );
-
 	// if any modem control signals changed, we need to do an setControlLines()
 	
 	if ((mask & PD_RS232_S_DTR) && ((port->FlowControl & PD_RS232_A_DTR) != PD_RS232_A_DTR))
@@ -1518,6 +1515,10 @@ void nl_bjaelectronics_driver_PL2303::changeState( PortInfo_t *port, UInt32 stat
             }
         }
 			
+	DEBUG_IOLog(6,"nl_bjaelectronics_driver_PL2303::changeState IOLockUnLock( port->serialRequestLock );\n" );
+	
+    IOLockUnlock( port->serialRequestLock );
+	
 	if (delta & ( PD_RS232_S_DTR | PD_RS232_S_RFR )){
 		DEBUG_IOLog(5,"setControlLines aanroepen\n");
         setControlLines( port );	
