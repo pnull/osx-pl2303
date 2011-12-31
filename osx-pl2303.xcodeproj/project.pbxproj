@@ -310,352 +310,112 @@
 		108CB67613DB7BE200AD6C02 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1.0.0d1;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_MODEL_TUNING = G5;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
-				MODULE_NAME = nl.bjaelectronics.driver.PL2303;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_NAME = "osx-pl2303";
-				SDKROOT = macosx;
-				VALID_ARCHS = "i386 x86_64";
 				WRAPPER_EXTENSION = kext;
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
-		108CB67713DB7BE200AD6C02 /* Release-10.6-universal */ = {
+		108CB67C13DB7F9C00AD6C02 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
-				MODULE_NAME = nl.bjaelectronics.driver.PL2303;
-				MODULE_VERSION = 1.0.0d1;
-				PRODUCT_NAME = "osx-pl2303";
-				SDKROOT = macosx;
-				VALID_ARCHS = "i386 x86_64";
-				WRAPPER_EXTENSION = kext;
-			};
-			name = "Release-10.6-universal";
-		};
-		108CB67813DB7BE200AD6C02 /* Release-10.4-universal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
-				MODULE_NAME = nl.bjaelectronics.driver.PL2303;
-				MODULE_VERSION = 1.0.0d1;
-				PRODUCT_NAME = "osx-pl2303";
-				SDKROOT = macosx;
-				VALID_ARCHS = "i386 x86_64";
-				WRAPPER_EXTENSION = kext;
-			};
-			name = "Release-10.4-universal";
-		};
-		108CB67913DB7BE200AD6C02 /* Release-10.3.9 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
-				MODULE_NAME = nl.bjaelectronics.driver.PL2303;
-				MODULE_VERSION = 1.0.0d1;
-				PRODUCT_NAME = "osx-pl2303";
-				SDKROOT = macosx;
-				VALID_ARCHS = "i386 x86_64";
-				WRAPPER_EXTENSION = kext;
-			};
-			name = "Release-10.3.9";
-		};
-		108CB67C13DB7F9C00AD6C02 /* Release-10.7-universal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = macosx;
-			};
-			name = "Release-10.7-universal";
-		};
-		108CB67D13DB7F9C00AD6C02 /* Release-10.7-universal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
 				MODULE_NAME = nl.bjaelectronics.driver.PL2303;
-				MODULE_VERSION = 1.0.0d1;
-				PRODUCT_NAME = "osx-pl2303";
 				SDKROOT = macosx;
-				VALID_ARCHS = "i386 x86_64";
-				WRAPPER_EXTENSION = kext;
 			};
-			name = "Release-10.7-universal";
+			name = Release;
 		};
-		108CB67E13DB7F9C00AD6C02 /* Release-10.7-universal */ = {
+		108CB67D13DB7F9C00AD6C02 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CURRENT_PROJECT_VERSION = 1.0.0d1;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
-				MODULE_NAME = nl.bjaelectronics.driver.PL2303;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_NAME = "osx-pl2303";
-				SDKROOT = macosx;
-				VALID_ARCHS = "i386 x86_64";
 				WRAPPER_EXTENSION = kext;
 			};
-			name = "Release-10.7-universal";
+			name = Release;
 		};
-		108CB67F13DB7F9C00AD6C02 /* Release-10.7-universal */ = {
+		108CB67E13DB7F9C00AD6C02 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
 				CURRENT_PROJECT_VERSION = 1.0.0d1;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
-				MODULE_NAME = com.yourcompany.driver.osx_pl2303;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_NAME = "osx-pl2303";
 				WRAPPER_EXTENSION = kext;
 			};
-			name = "Release-10.7-universal";
+			name = Release;
+		};
+		108CB67F13DB7F9C00AD6C02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
+				MODULE_VERSION = 1.0.0d1;
+				PRODUCT_NAME = "osx-pl2303";
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Release;
 		};
 		1DEB91DA08733DB10010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1.0.0d1;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_MODEL_TUNING = G5;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
-				MODULE_NAME = com.yourcompany.driver.osx_pl2303;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_NAME = "osx-pl2303";
 				WRAPPER_EXTENSION = kext;
-				ZERO_LINK = YES;
 			};
 			name = Debug;
-		};
-		1DEB91DB08733DB10010E9CD /* Release-10.4-universal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
-				MODULE_NAME = com.yourcompany.driver.osx_pl2303;
-				MODULE_VERSION = 1.0.0d1;
-				PRODUCT_NAME = "osx-pl2303";
-				WRAPPER_EXTENSION = kext;
-			};
-			name = "Release-10.4-universal";
 		};
 		1DEB91DE08733DB10010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MODULE_NAME = nl.bjaelectronics.driver.PL2303;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
 			name = Debug;
-		};
-		1DEB91DF08733DB10010E9CD /* Release-10.4-universal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				SDKROOT = macosx;
-			};
-			name = "Release-10.4-universal";
 		};
 		86D61F44112ADA40006B2103 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1.0.0d1;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_MODEL_TUNING = G5;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
-				MODULE_NAME = nl.bjaelectronics.driver.PL2303;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_NAME = "osx-pl2303";
-				SDKROOT = macosx;
-				VALID_ARCHS = "i386 x86_64";
 				WRAPPER_EXTENSION = kext;
-				ZERO_LINK = YES;
 			};
 			name = Debug;
-		};
-		86D61F45112ADA40006B2103 /* Release-10.4-universal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
-				MODULE_NAME = nl.bjaelectronics.driver.PL2303;
-				MODULE_VERSION = 1.0.0d1;
-				PRODUCT_NAME = "osx-pl2303";
-				SDKROOT = macosx;
-				VALID_ARCHS = "i386 x86_64";
-				WRAPPER_EXTENSION = kext;
-			};
-			name = "Release-10.4-universal";
-		};
-		86D61F46112ADA40006B2103 /* Release-10.3.9 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
-				MODULE_NAME = nl.bjaelectronics.driver.PL2303;
-				MODULE_VERSION = 1.0.0d1;
-				PRODUCT_NAME = "osx-pl2303";
-				SDKROOT = macosx;
-				VALID_ARCHS = "i386 x86_64";
-				WRAPPER_EXTENSION = kext;
-			};
-			name = "Release-10.3.9";
-		};
-		86D61F75112ADD8B006B2103 /* Release-10.6-universal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = macosx;
-			};
-			name = "Release-10.6-universal";
-		};
-		86D61F76112ADD8B006B2103 /* Release-10.6-universal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
-				MODULE_NAME = nl.bjaelectronics.driver.PL2303;
-				MODULE_VERSION = 1.0.0d1;
-				PRODUCT_NAME = "osx-pl2303";
-				SDKROOT = macosx;
-				VALID_ARCHS = "i386 x86_64";
-				WRAPPER_EXTENSION = kext;
-			};
-			name = "Release-10.6-universal";
-		};
-		86D61F77112ADD8B006B2103 /* Release-10.6-universal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
-				MODULE_NAME = com.yourcompany.driver.osx_pl2303;
-				MODULE_VERSION = 1.0.0d1;
-				PRODUCT_NAME = "osx-pl2303";
-				WRAPPER_EXTENSION = kext;
-			};
-			name = "Release-10.6-universal";
-		};
-		90FB12C70A3AE90D00C1B579 /* Release-10.3.9 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
-				MODULE_NAME = com.yourcompany.driver.osx_pl2303;
-				MODULE_VERSION = 1.0.0d1;
-				PRODUCT_NAME = "osx-pl2303";
-				WRAPPER_EXTENSION = kext;
-			};
-			name = "Release-10.3.9";
-		};
-		90FB12C90A3AE90D00C1B579 /* Release-10.3.9 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.3;
-				SDKROOT = macosx;
-			};
-			name = "Release-10.3.9";
 		};
 /* End XCBuildConfiguration section */
 
@@ -664,49 +424,37 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				108CB67613DB7BE200AD6C02 /* Debug */,
-				108CB67713DB7BE200AD6C02 /* Release-10.6-universal */,
-				108CB67D13DB7F9C00AD6C02 /* Release-10.7-universal */,
-				108CB67813DB7BE200AD6C02 /* Release-10.4-universal */,
-				108CB67913DB7BE200AD6C02 /* Release-10.3.9 */,
+				108CB67D13DB7F9C00AD6C02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release-10.7-universal";
+			defaultConfigurationName = Release;
 		};
 		1DEB91D908733DB10010E9CD /* Build configuration list for PBXNativeTarget "osx-pl2303-10.4-universal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB91DA08733DB10010E9CD /* Debug */,
-				86D61F77112ADD8B006B2103 /* Release-10.6-universal */,
-				108CB67F13DB7F9C00AD6C02 /* Release-10.7-universal */,
-				1DEB91DB08733DB10010E9CD /* Release-10.4-universal */,
-				90FB12C70A3AE90D00C1B579 /* Release-10.3.9 */,
+				108CB67F13DB7F9C00AD6C02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release-10.7-universal";
+			defaultConfigurationName = Release;
 		};
 		1DEB91DD08733DB10010E9CD /* Build configuration list for PBXProject "osx-pl2303" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB91DE08733DB10010E9CD /* Debug */,
-				86D61F75112ADD8B006B2103 /* Release-10.6-universal */,
-				108CB67C13DB7F9C00AD6C02 /* Release-10.7-universal */,
-				1DEB91DF08733DB10010E9CD /* Release-10.4-universal */,
-				90FB12C90A3AE90D00C1B579 /* Release-10.3.9 */,
+				108CB67C13DB7F9C00AD6C02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release-10.7-universal";
+			defaultConfigurationName = Release;
 		};
 		86D61F43112ADA40006B2103 /* Build configuration list for PBXNativeTarget "osx-pl2303-10.6-universal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				86D61F44112ADA40006B2103 /* Debug */,
-				86D61F76112ADD8B006B2103 /* Release-10.6-universal */,
-				108CB67E13DB7F9C00AD6C02 /* Release-10.7-universal */,
-				86D61F45112ADA40006B2103 /* Release-10.4-universal */,
-				86D61F46112ADA40006B2103 /* Release-10.3.9 */,
+				108CB67E13DB7F9C00AD6C02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release-10.7-universal";
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
