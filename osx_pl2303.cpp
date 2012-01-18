@@ -963,10 +963,9 @@ bool nl_bjaelectronics_driver_PL2303::createSuffix( unsigned char *sufKey )
     UInt8                   serBuf[10];     // arbitrary size > 8
     OSNumber                *location;
     UInt32                  locVal;
-    UInt8                   *rlocVal;
-    UInt16                  offs, i, sig = 0;
+    UInt16                  offs, sig = 0;
     UInt8                   indx;
-    bool                    keyOK = false;      
+    bool                    keyOK = false;  
     DEBUG_IOLog(4,"%s(%p)::createSuffix\n", getName(), this);
 	
     indx = fpDevice->GetSerialNumberStringIndex();  
@@ -997,21 +996,18 @@ bool nl_bjaelectronics_driver_PL2303::createSuffix( unsigned char *sufKey )
     if ( !keyOK )
 	{
 		// Generate suffix key based on the location property tag
+		// Bit 24 - 31 is the bus number, rest are nibbles of port number path.
+		// We can treat the bus number as nibbles as well since port number can not be 0.
 		
 		location = (OSNumber *)fpDevice->getProperty(kUSBDevicePropertyLocationID);	
 		DEBUG_IOLog(5,"%s(%p)::createSuffix location number: %d\n", getName(), this, location );
 		
 		if ( location )
 		{
-			locVal = location->unsigned32BitValue();        
-			offs = 0;
-			rlocVal = (UInt8*)&locVal;
-			for (i=0; i<4; i++)
+			locVal = location->unsigned32BitValue();
+			for (int shift = 28 ; shift >= 0 ; shift -= 4)
 			{
-				sufKey[offs] = Asciify(rlocVal[i] >> 4);
-				if ( sufKey[offs++] != '0')
-					sig = offs;
-				sufKey[offs] = Asciify(rlocVal[i]);
+				sufKey[offs] = Asciify(locVal >> shift & 0x0f);
 				if ( sufKey[offs++] != '0')
 					sig = offs;
 			}           
