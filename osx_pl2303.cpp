@@ -967,7 +967,7 @@ bool nl_bjaelectronics_driver_PL2303::createSuffix( unsigned char *sufKey )
     UInt32                  locVal;
     UInt16                  offs, sig = 0;
     UInt8                   indx;
-    bool                    keyOK = false;  
+    bool                    keyOK = false;
     DEBUG_IOLog(4,"%s(%p)::createSuffix\n", getName(), this);
 	
     indx = fpDevice->GetSerialNumberStringIndex();  
@@ -1002,14 +1002,15 @@ bool nl_bjaelectronics_driver_PL2303::createSuffix( unsigned char *sufKey )
 		// We can treat the bus number as nibbles as well since port number can not be 0.
 		
 		location = (OSNumber *)fpDevice->getProperty(kUSBDevicePropertyLocationID);	
-		DEBUG_IOLog(5,"%s(%p)::createSuffix location number: %d\n", getName(), this, location );
+		DEBUG_IOLog(5,"%s(%p)::createSuffix location number: 0x%x\n", getName(), this, location );
 		
 		if ( location )
 		{
 			locVal = location->unsigned32BitValue();
+			offs = 0;
 			for (int shift = 28 ; shift >= 0 ; shift -= 4)
 			{
-				sufKey[offs] = Asciify(locVal >> shift & 0x0f);
+				sufKey[offs] = Asciify(locVal >> shift);
 				if ( sufKey[offs++] != '0')
 					sig = offs;
 			}           
