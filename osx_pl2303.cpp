@@ -414,12 +414,14 @@ IOReturn nl_bjaelectronics_driver_PL2303::privateWatchState( PortInfo_t *port, U
 		{
 			rtn = kIOReturnTimeout;
 			break;
-		} else {
-			if (rtn == THREAD_INTERRUPTED)
-			{
-				rtn = kIOReturnAborted;
-				break;
-			}
+		} else if (rtn == THREAD_INTERRUPTED)
+		{
+			rtn = kIOReturnAborted;
+			break;
+		} else if (rtn == kIOReturnNotPermitted)
+		{
+			rtn = kIOReturnAborted; // XXX kIOReturnCannotLock?
+			break;
 		}
 		
     }/* end for */
