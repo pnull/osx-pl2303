@@ -236,7 +236,7 @@
 			<key>IOClass</key>
 			<string>nl_bjaelectronics_driver_PL2303</string>
 			<key>IOKitDebug</key>
-			<integer>0</integer>
+			<integer>65535</integer>
 			<key>IOMatchCategory</key>
 			<string>ProfilicSerialUSB</string>
 			<key>IOProviderClass</key>
@@ -623,14 +623,16 @@
 	</dict>
 	<key>OSBundleLibraries</key>
 	<dict>
+		<key>com.apple.driver.AppleIntelSNBGraphicsFB</key>
+		<string>7.1.4</string>
 		<key>com.apple.iokit.IOSerialFamily</key>
-		<string>1.0.4</string>
+		<string>10.0.5</string>
 		<key>com.apple.iokit.IOUSBFamily</key>
-		<string>1.8</string>
+		<string>4.5.5</string>
 		<key>com.apple.kpi.iokit</key>
-		<string>10.0.0</string>
+		<string>11.2</string>
 		<key>com.apple.kpi.libkern</key>
-		<string>10.0.0</string>
+		<string>11.2</string>
 		<key>com.apple.kpi.mach</key>
 		<string>10.0.0</string>
 	</dict>
