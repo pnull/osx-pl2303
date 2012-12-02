@@ -311,9 +311,9 @@ typedef struct
 	
 } PortInfo_t;
 
-class nl_bjaelectronics_driver_PL2303 : public IOSerialDriverSync
+class de_jamit_driver_pl2303 : public IOSerialDriverSync
 {
-	OSDeclareDefaultStructors(nl_bjaelectronics_driver_PL2303)
+	OSDeclareDefaultStructors(de_jamit_driver_pl2303)
 private:
     UInt32          fCount;         // usb write length
     UInt8           fSessions;      // Active sessions (count of opens on /dev/tty entries)

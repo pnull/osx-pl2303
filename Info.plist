@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>nl.bjaelectronics.driver.PL2303</string>
+	<string>de.jamit.driver.pl2303</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -19,15 +19,15 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.0d1</string>
+	<string>1.1</string>
 	<key>IOKitPersonalities</key>
 	<dict>
 		<key>04bb_0a03</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -48,9 +48,9 @@
 		<key>04e8_8001</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -71,9 +71,9 @@
 		<key>0547_2008</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -94,9 +94,9 @@
 		<key>0557_2008</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -117,9 +117,9 @@
 		<key>056e_5003</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -140,9 +140,9 @@
 		<key>056e_5004</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -163,9 +163,9 @@
 		<key>0584_b000</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -186,9 +186,9 @@
 		<key>05ad_0fba</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -209,9 +209,9 @@
 		<key>067b_04bb</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -232,9 +232,9 @@
 		<key>067b_2303</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>65535</integer>
 			<key>IOMatchCategory</key>
@@ -255,9 +255,9 @@
 		<key>067b_aaa0</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -278,9 +278,9 @@
 		<key>067b_aaa2</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -301,9 +301,9 @@
 		<key>0731_0528</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -324,9 +324,9 @@
 		<key>0745_0001</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -347,9 +347,9 @@
 		<key>078b_1234</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -370,9 +370,9 @@
 		<key>0830_0080</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -393,9 +393,9 @@
 		<key>0df7_0620</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -416,9 +416,9 @@
 		<key>0eba_1080</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -439,9 +439,9 @@
 		<key>11ad_0001</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -462,9 +462,9 @@
 		<key>11f5_0003</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -485,9 +485,9 @@
 		<key>11f7_02df</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -508,9 +508,9 @@
 		<key>1453_4026</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -531,9 +531,9 @@
 		<key>19d2_fffd</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -554,9 +554,9 @@
 		<key>2303_1659</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -577,9 +577,9 @@
 		<key>2478_2008</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -600,9 +600,9 @@
 		<key>6189_2068</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>nl.bjaelectronics.driver.PL2303</string>
+			<string>de.jamit.driver.pl2303</string>
 			<key>IOClass</key>
-			<string>nl_bjaelectronics_driver_PL2303</string>
+			<string>de_jamit_driver_pl2303</string>
 			<key>IOKitDebug</key>
 			<integer>0</integer>
 			<key>IOMatchCategory</key>
@@ -623,8 +623,6 @@
 	</dict>
 	<key>OSBundleLibraries</key>
 	<dict>
-		<key>com.apple.driver.AppleIntelSNBGraphicsFB</key>
-		<string>7.1.4</string>
 		<key>com.apple.iokit.IOSerialFamily</key>
 		<string>10.0.5</string>
 		<key>com.apple.iokit.IOUSBFamily</key>
