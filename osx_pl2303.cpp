@@ -375,8 +375,8 @@ IOReturn nl_bjaelectronics_driver_PL2303::privateWatchState( PortInfo_t *port, U
 	
     if ( !(mask & (PD_S_ACQUIRED | PD_S_ACTIVE)) )
 	{
-		watchState &= ~PD_S_ACTIVE; // Check for low PD_S_ACTIVE
-		mask       |=  PD_S_ACTIVE; // Register interest in PD_S_ACTIVE bit
+		watchState &= (UInt32)(~PD_S_ACTIVE); // Check for low PD_S_ACTIVE
+		mask       |=  (UInt32)(PD_S_ACTIVE); // Register interest in PD_S_ACTIVE bit
 		autoActiveBit = true;
 	}
 	
@@ -794,7 +794,7 @@ bool nl_bjaelectronics_driver_PL2303::configureDevice( UInt8 numConfigs )
     IOUSBInterfaceDescriptor            *intf = NULL;   // interface descriptor
     IOReturn                            ior;
     UInt8                               cval;
-    UInt8                               config = 0;
+    //UInt8                               config = 0;
 	
     DEBUG_IOLog(4,"%s(%p)::configureDevice\n", getName(), this);
 	
@@ -819,7 +819,6 @@ bool nl_bjaelectronics_driver_PL2303::configureDevice( UInt8 numConfigs )
 			if ( ior == kIOReturnSuccess )
 			{
 				if ( intf ){
-					config = cd->bConfigurationValue;
 					DEBUG_IOLog(5,"%s(%p)::configureDevice - Interface descriptor found\n", getName(), this);
 					break;
 				} else {
@@ -982,7 +981,7 @@ bool nl_bjaelectronics_driver_PL2303::createSuffix( unsigned char *sufKey )
 		{
 			DEBUG_IOLog(5,"%s(%p)::createSuffix serial number: %s\n", getName(), this, serBuf );
 			
-			int serBufLength = strlen((char *)&serBuf);
+			size_t serBufLength = strlen((char *)&serBuf);
          
 			if ( (serBufLength > 0) && (serBufLength < 9) )
 			{
@@ -1607,7 +1606,7 @@ IOReturn nl_bjaelectronics_driver_PL2303::acquirePortGated( bool sleep, void *re
 	{
         DEBUG_IOLog(5,"%s(%p)::acquirePortGated readportstate\n", getName(), this);
 
-		busyState = readPortState( port ) & PD_S_ACQUIRED;
+		busyState = (UInt32)(readPortState( port ) & PD_S_ACQUIRED);
 		if ( !busyState )
 		{       
 			// Set busy bit, and clear everything else
@@ -1706,7 +1705,7 @@ IOReturn nl_bjaelectronics_driver_PL2303::releasePortGated( void *refCon )
     DEBUG_IOLog(4,"%s(%p)::releasePortGated\n", getName(), this);
 	
     
-    busyState = (readPortState( port ) & PD_S_ACQUIRED);
+    busyState = (UInt32)(readPortState( port ) & PD_S_ACQUIRED);
     if ( !busyState )
 	{
 		IOLog("%s(%p)::releasePortGated - port not open\n", getName(), this);
@@ -1763,7 +1762,7 @@ IOReturn nl_bjaelectronics_driver_PL2303::setState(UInt32 state, UInt32 mask, vo
 	
 	// ignore any bits that are read-only
 	
-	mask &= (~port->FlowControl & PD_RS232_A_MASK) | PD_S_MASK ;
+	mask &= (UInt32)((~port->FlowControl & PD_RS232_A_MASK) | PD_S_MASK);
 	
 	// always store handshakeline state
 	mask |=  kHandshakeInMask;
@@ -1797,9 +1796,10 @@ IOReturn nl_bjaelectronics_driver_PL2303::setState(UInt32 state, UInt32 mask, vo
 IOReturn nl_bjaelectronics_driver_PL2303::setStateAction(OSObject *owner, void *arg0, void *arg1, void *arg2, void *)
 {
     DEBUG_IOLog(4,"nl_bjaelectronics_driver_PL2303::setStateAction\n");
-  
+    UInt32* state = (UInt32*)arg0;
+    UInt32* mask = (UInt32*)arg1;
 #if defined(__x86_64__)
-    return ((nl_bjaelectronics_driver_PL2303 *)owner)->setStateGated((UInt64)arg0, (UInt64)arg1, (void *)arg2);
+    return ((nl_bjaelectronics_driver_PL2303 *)owner)->setStateGated(*state, *mask, (void *)arg2);
 #else
     return ((nl_bjaelectronics_driver_PL2303 *)owner)->setStateGated((UInt32)arg0, (UInt32)arg1, (void *)arg2);
 #endif
@@ -1835,7 +1835,7 @@ IOReturn nl_bjaelectronics_driver_PL2303::setStateGated( UInt32 state, UInt32 ma
     if ( readPortState( port ) & PD_S_ACQUIRED )
 	{
 	    // ignore any bits that are read-only
-		mask &= (~port->FlowControl & PD_RS232_A_MASK) | PD_S_MASK;
+		mask &= (UInt32)((~port->FlowControl & PD_RS232_A_MASK) | PD_S_MASK);
 		DEBUG_IOLog(5,"%s(%p)::setStateGated mask: %p state %p ", getName(), this,mask, state);
 		
 		if ( mask)
@@ -1892,9 +1892,10 @@ IOReturn nl_bjaelectronics_driver_PL2303::watchState(UInt32 *state, UInt32 mask,
 IOReturn nl_bjaelectronics_driver_PL2303::watchStateAction(OSObject *owner, void *arg0, void *arg1, void *, void *)
 {
     DEBUG_IOLog(4,"nl_bjaelectronics_driver_PL2303::watchStateAction\n");
-
+    UInt32* state = (UInt32*)arg0;
+    UInt32* mask = (UInt32*)arg1;
 #if defined(__x86_64__)
-    return ((nl_bjaelectronics_driver_PL2303 *)owner)->watchStateGated((UInt32 *)arg0, (UInt64)arg1);
+    return ((nl_bjaelectronics_driver_PL2303 *)owner)->watchStateGated(state, *mask);
 #else
     return ((nl_bjaelectronics_driver_PL2303 *)owner)->watchStateGated((UInt32 *)arg0, (UInt32)arg1);
 #endif
@@ -1923,10 +1924,9 @@ IOReturn nl_bjaelectronics_driver_PL2303::watchStateGated( UInt32 *state, UInt32
 	
     if ( readPortState( fPort ) & PD_S_ACQUIRED )
 	{
-		ret = kIOReturnSuccess;
-		mask &= EXTERNAL_MASK;
+		mask &= (UInt32)EXTERNAL_MASK;
 		ret = privateWatchState( fPort, state, mask );
-		*state &= EXTERNAL_MASK;
+		*state &= (UInt32)EXTERNAL_MASK;
 	}
     
     return ret;
@@ -1993,11 +1993,12 @@ IOReturn nl_bjaelectronics_driver_PL2303::executeEvent(UInt32 event, UInt32 data
 IOReturn nl_bjaelectronics_driver_PL2303::executeEventAction(OSObject *owner, void *arg0, void *arg1, void *arg2, void *)
 {
 	DEBUG_IOLog(4,"nl_bjaelectronics_driver_PL2303::executeEventAction\n");
-
+    UInt32* event = (UInt32*)arg0;
+    UInt32* data = (UInt32*)arg1;
 #if defined(__x86_64__)
-	return ((nl_bjaelectronics_driver_PL2303 *)owner)->executeEventGated((UInt64)arg0, (UInt64)arg1, (void *)arg2);
+	return ((nl_bjaelectronics_driver_PL2303 *)owner)->executeEventGated(*event, *data, (void *)arg2);
 #else
-        return ((nl_bjaelectronics_driver_PL2303 *)owner)->executeEventGated((UInt32)arg0, (UInt32)arg1, (void *)arg2);
+    return ((nl_bjaelectronics_driver_PL2303 *)owner)->executeEventGated((UInt32)arg0, (UInt32)arg1, (void *)arg2);
 #endif
 }/* end executeEventAction */
 
@@ -2052,7 +2053,7 @@ IOReturn nl_bjaelectronics_driver_PL2303::executeEventGated( UInt32 event, UInt3
 		case PD_E_FLOW_CONTROL:
 			
 			old = port->FlowControl;				    // save old modes for unblock checks
-            port->FlowControl = data & (CAN_BE_AUTO | CAN_NOTIFY);  // new values, trimmed to legal values
+            port->FlowControl = (UInt32)(data & (CAN_BE_AUTO | CAN_NOTIFY));  // new values, trimmed to legal values
 			DEBUG_IOLog(1,"%s(%p)::executeEvent - PD_E_FLOW_CONTROL port->FlowControl %p\n", getName(), this, port->FlowControl );
 		
 			// now cleanup if we've blocked RX or TX with the previous style flow control and we're switching to a different kind
@@ -2298,8 +2299,8 @@ IOReturn nl_bjaelectronics_driver_PL2303::executeEventGated( UInt32 event, UInt3
 			
 		case PD_RS232_E_LINE_BREAK:
 			DEBUG_IOLog(4,"%s(%p)::executeEvent - PD_RS232_E_LINE_BREAK\n", getName(), this );
-            state &= ~PD_RS232_S_BRK;
-            delta |= PD_RS232_S_BRK;
+            state &= (UInt32)(~PD_RS232_S_BRK);
+            delta |= (UInt32)(PD_RS232_S_BRK);
             if (data)
             {
                 port->BreakState = true;
@@ -2354,7 +2355,6 @@ IOReturn nl_bjaelectronics_driver_PL2303::executeEventGated( UInt32 event, UInt3
 			break;
 	}
 	
-    state |= state;/* ejk for compiler warnings. ?? */
 	changeState( port, state, delta );
 		
 	return ret;
@@ -2400,9 +2400,10 @@ IOReturn nl_bjaelectronics_driver_PL2303::requestEvent(UInt32 event, UInt32 *dat
 IOReturn nl_bjaelectronics_driver_PL2303::requestEventAction(OSObject *owner, void *arg0, void *arg1, void *arg2, void *)
 {
 	DEBUG_IOLog(4,"nl_bjaelectronics_driver_PL2303::requestEventAction\n");
-
+    UInt32* event = (UInt32*)arg0;
+    UInt32* data = (UInt32*)arg1;
 #if defined(__x86_64__)
-    return ((nl_bjaelectronics_driver_PL2303 *)owner)->requestEventGated((UInt64)arg0, (UInt32 *)arg1, (void *)arg2);
+    return ((nl_bjaelectronics_driver_PL2303 *)owner)->requestEventGated(*event, data, (void *)arg2);
 #else
     return ((nl_bjaelectronics_driver_PL2303 *)owner)->requestEventGated((UInt32)arg0, (UInt32 *)arg1, (void *)arg2);  
 #endif
@@ -2461,12 +2462,12 @@ IOReturn nl_bjaelectronics_driver_PL2303::requestEventGated( UInt32 event, UInt3
 				
 			case PD_E_TXQ_SIZE:
 				DEBUG_IOLog(4,"%s(%p)::requestEvent - PD_E_TXQ_SIZE\n", getName(), this);
-				*data = getQueueSize( &port->TX );  
+				*data = (UInt32)getQueueSize( &port->TX );  
 				break;
 				
 			case PD_E_RXQ_SIZE:
 				DEBUG_IOLog(4,"%s(%p)::requestEvent - PD_E_RXQ_SIZE\n", getName(), this);
-				*data = getQueueSize( &port->RX );  
+				*data = (UInt32)getQueueSize( &port->RX );  
 				break;
 				
 			case PD_E_TXQ_LOW_WATER:
@@ -2494,13 +2495,13 @@ IOReturn nl_bjaelectronics_driver_PL2303::requestEventGated( UInt32 event, UInt3
 				break;
 				
 			case PD_E_TXQ_AVAILABLE:
-				*data = freeSpaceinQueue( &port->TX );   
+				*data = (UInt32)freeSpaceinQueue( &port->TX );   
 				DEBUG_IOLog(4,"%s(%p)::requestEvent - PD_E_TXQ_AVAILABLE size: %x\n", getName(), this, *data );
 				break;
 				
 			case PD_E_RXQ_AVAILABLE:
 				DEBUG_IOLog(4,"%s(%p)::requestEvent - PD_E_RXQ_AVAILABLE\n", getName(), this);
-				*data = usedSpaceinQueue( &port->RX );  
+				*data = (UInt32)usedSpaceinQueue( &port->RX );  
 				break;
 				
 			case PD_E_DATA_RATE:
@@ -2571,7 +2572,7 @@ IOReturn nl_bjaelectronics_driver_PL2303::requestEventGated( UInt32 event, UInt3
 		}
     }
 	
-    return kIOReturnSuccess;
+    return returnValue;
     
 }/* end requestEvent */
 
@@ -2607,8 +2608,8 @@ IOReturn nl_bjaelectronics_driver_PL2303::enqueueEvent( UInt32 event, UInt32 dat
 	{	
 		case PD_RS232_E_LINE_BREAK:
 			DEBUG_IOLog(2,"%s(%p)::enqueueEvent - PD_RS232_E_LINE_BREAK\n", getName(), this );
-            state &= ~PD_RS232_S_BRK;
-            delta |= PD_RS232_S_BRK;
+            state &= (UInt32)(~PD_RS232_S_BRK);
+            delta |= (UInt32)PD_RS232_S_BRK;
             if (data)
             {
                 port->BreakState = true;
@@ -2633,7 +2634,6 @@ IOReturn nl_bjaelectronics_driver_PL2303::enqueueEvent( UInt32 event, UInt32 dat
 			break;
 	}
 	
-    state |= state;/* ejk for compiler warnings. ?? */
 	changeState( port, state, delta );
 		
 	return ret;			
@@ -2715,8 +2715,9 @@ IOReturn nl_bjaelectronics_driver_PL2303::enqueueData(UInt8 *buffer, UInt32 size
 
 IOReturn nl_bjaelectronics_driver_PL2303::enqueueDataAction(OSObject *owner, void *arg0, void *arg1, void *arg2, void *arg3)
 {
+    
 #if defined(__x86_64__)
-    return ((nl_bjaelectronics_driver_PL2303 *)owner)->enqueueDataGated((UInt8 *)arg0, (UInt64)arg1, (UInt32 *)arg2, (bool)arg3);
+    return ((nl_bjaelectronics_driver_PL2303 *)owner)->enqueueDataGated((UInt8 *)arg0, *(UInt32*)arg1, (UInt32 *)arg2, (bool)arg3);
 #else
     return ((nl_bjaelectronics_driver_PL2303 *)owner)->enqueueDataGated((UInt8 *)arg0, (UInt32)arg1, (UInt32 *)arg2, (bool)arg3);
 #endif
@@ -2788,7 +2789,7 @@ IOReturn nl_bjaelectronics_driver_PL2303::enqueueDataGated( UInt8 *buffer, UInt3
 	}
     	
 	/* OK, go ahead and try to add something to the buffer  */
-    *count = addtoQueue( &fPort->TX, buffer, size );
+    *count = (UInt32)addtoQueue( &fPort->TX, buffer, size );
     checkQueues( fPort );
 	
 	/* Let the tranmitter know that we have something ready to go   */
@@ -2807,7 +2808,7 @@ IOReturn nl_bjaelectronics_driver_PL2303::enqueueDataGated( UInt8 *buffer, UInt3
 			return rtn;
 		}
 		
-		*count += addtoQueue( &fPort->TX, buffer + *count, size - *count );
+		*count += (UInt32)addtoQueue( &fPort->TX, buffer + *count, size - *count );
 		checkQueues( fPort );
 		
 		/* Let the tranmitter know that we have something ready to go.  */
@@ -2867,7 +2868,7 @@ IOReturn nl_bjaelectronics_driver_PL2303::dequeueDataAction(OSObject *owner, voi
 	DEBUG_IOLog(4,"nl_bjaelectronics_driver_PL2303::dequeueDataAction\n");
   
 #if defined(__x86_64__)
-    return ((nl_bjaelectronics_driver_PL2303 *)owner)->dequeueDataGated((UInt8 *)arg0, (UInt64)arg1, (UInt32 *)arg2, (UInt64)arg3);
+    return ((nl_bjaelectronics_driver_PL2303 *)owner)->dequeueDataGated((UInt8 *)arg0, *(UInt32*)arg1, (UInt32 *)arg2, *(UInt32*)arg3);
 #else
     return ((nl_bjaelectronics_driver_PL2303 *)owner)->dequeueDataGated((UInt8 *)arg0, (UInt32)arg1, (UInt32 *)arg2, (UInt32)arg3);
 #endif
@@ -2904,7 +2905,6 @@ IOReturn nl_bjaelectronics_driver_PL2303::dequeueDataAction(OSObject *owner, voi
  {
 	 IOReturn    rtn = kIOReturnSuccess;
 	 UInt32      state = 0;
-	 CirQueue *Queue;
 	 
 	 DEBUG_IOLog(4,"%s(%p)::dequeueDataGated\n", getName(), this);
 	 
@@ -2918,17 +2918,16 @@ IOReturn nl_bjaelectronics_driver_PL2303::dequeueDataAction(OSObject *owner, voi
 		 return kIOReturnNotOpen;
 	 
 	 /* Get any data living in the queue.    */
-	 *count = removefromQueue( &fPort->RX, buffer, size );
+	 *count = (UInt32)removefromQueue( &fPort->RX, buffer, size );
 	 
 	 checkQueues( fPort );
 	 while ( (min > 0) && (*count < min) )	
 	 {
-		 int count_read;
+		 size_t count_read;
 		 
 		 /* Figure out how many bytes we have left to queue up */
 		 state = 0;
-		 Queue = &fPort->RX;
-		 DEBUG_IOLog(4,"%s(%p)::dequeueDataGated - min: %d count: %d size: %d SizeQueue: %d InQueue: %d \n", getName(), this,min,*count, (size - *count), Queue->Size, Queue->InQueue );
+		 DEBUG_IOLog(4,"%s(%p)::dequeueDataGated - min: %d count: %d size: %d SizeQueue: %d InQueue: %d \n", getName(), this,min,*count, (size - *count), fPort->RX.Size, fPort->RX.InQueue );
 		 
 		 rtn = watchStateGated( &state, PD_S_RXQ_EMPTY );
 		 
@@ -2941,7 +2940,7 @@ IOReturn nl_bjaelectronics_driver_PL2303::dequeueDataAction(OSObject *owner, voi
 		 /* Try and get more data starting from where we left off */
 		 count_read = removefromQueue( &fPort->RX, buffer + *count, (size - *count) );
 		 
-		 *count += count_read;
+		 *count += (UInt32)count_read;
 		 checkQueues( fPort );
 		 
 	 }/* end while */
@@ -2974,7 +2973,7 @@ UInt32 nl_bjaelectronics_driver_PL2303::getState(void *refCon)
     
     checkQueues( port );
 	
-    state = readPortState( port ) & EXTERNAL_MASK;
+    state = (UInt32)(readPortState( port ) & EXTERNAL_MASK);
     
     DEBUG_IOLog(6,"%s(%p)::getState-->State: %x\n", getName(), this, state );
     
@@ -3142,8 +3141,6 @@ void nl_bjaelectronics_driver_PL2303::interruptReadComplete( void *obj, void *pa
 
 
 			UInt8 *buf;
-			UInt32 buflen;
-			buflen = dLen;
 			buf = &me->fpinterruptPipeBuffer[0];
 #ifdef DATALOG
 
@@ -3213,7 +3210,11 @@ void nl_bjaelectronics_driver_PL2303::dataReadComplete( void *obj, void *param, 
 			}
 
 #endif	
-			ior = me->addtoQueue( &me->fPort->RX, &me->fPipeInBuffer[0], dtlength );
+			ior = (UInt32)me->addtoQueue( &me->fPort->RX, &me->fPipeInBuffer[0], dtlength );
+            if (ior != kIOReturnSuccess)
+            {
+                DEBUG_IOLog(4,"nl_bjaelectronics_driver_PL2303::dataReadComplete dataReadComplete - adding to queue failed\n");
+            }
 		}
 		
 		/* Queue the next read 	*/		
@@ -3316,10 +3317,11 @@ IOReturn nl_bjaelectronics_driver_PL2303::setSerialConfiguration( void )
 	IOReturn rtn;
 	IOUSBDevRequest request;
 	char * buf;	
+    
     DEBUG_IOLog(3,"%s(%p)::setSerialConfiguration baudrate: %d \n", getName(), this, fPort->BaudRate );
 	buf = (char *)IOMalloc( 10 );
 	memset(buf, 0x00, 0x07); 
-    
+
     fCurrentBaud = fPort->BaudRate;
     
     switch (fPort->BaudRate){
@@ -3934,7 +3936,7 @@ void nl_bjaelectronics_driver_PL2303::checkQueues( PortInfo_t *port )
 					
 	/* Figure out what has changed to get mask.*/
     DeltaState = QueuingState ^ readPortState( port );
-    changeState( port, QueuingState, DeltaState );
+    changeState( port, (UInt32)QueuingState, (UInt32)DeltaState );
 	
     return;
     
@@ -4002,7 +4004,7 @@ bool nl_bjaelectronics_driver_PL2303::setUpTransmit( void )
 		fPort->AreTransmitting = TRUE;
 		changeState( fPort, PD_S_TX_BUSY, PD_S_TX_BUSY );
 		
-		startTransmit(0, NULL, count, TempOutBuffer );      // do the "transmit" -- send to IrCOMM
+		startTransmit(0, NULL, (UInt32)count, TempOutBuffer );      // do the "transmit" -- send to IrCOMM
 //BJA Dit is niet goed, we moeten dit uitzetten als we een ack hebben van de pl2303, dus datawritecomplete		
 //		changeState( fPort, 0, PD_S_TX_BUSY );
 //		fPort->AreTransmitting = false;

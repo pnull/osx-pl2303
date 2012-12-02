@@ -233,12 +233,12 @@ UInt32 static inline boolBit(UInt32 a, bool b, UInt32 m) { return b ? (a|m) : (a
 
 /* Inline time conversions */
     
-static inline unsigned long tval2long( mach_timespec val )
+static inline unsigned int tval2long( mach_timespec val )
 {
    return (val.tv_sec * NSEC_PER_SEC) + val.tv_nsec;
 }
 
-static inline mach_timespec long2tval( unsigned long val )
+static inline mach_timespec long2tval( unsigned int val )
 {
     mach_timespec   tval;
 
