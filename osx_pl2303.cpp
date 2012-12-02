@@ -3385,11 +3385,26 @@ IOReturn nl_bjaelectronics_driver_PL2303::setSerialConfiguration( void )
     }
 	
 	if(fBaudCode) {
-		buf[0] = fBaudCode & 0xff;
-		buf[1] = (fBaudCode >> 8) & 0xff;
-		buf[2] = (fBaudCode >> 16) & 0xff;
-		buf[3] = (fBaudCode >> 24) & 0xff;
-	}
+	   if (fBaudCode <= 115200) {
+            buf[0] = fBaudCode & 0xff;
+            buf[1] = (fBaudCode >> 8) & 0xff;
+            buf[2] = (fBaudCode >> 16) & 0xff;
+            buf[3] = (fBaudCode >> 24) & 0xff;
+        }else{
+            unsigned tmp = 12*1000*1000*32 / fBaudCode;  
+            buf[3] = 0x80;
+            buf[2] = 0;
+            buf[1] = (tmp >= 256);
+            while (tmp >= 256) {
+                tmp >>= 2;
+                buf[1] <<= 1;
+            }
+            if (tmp > 256) {
+                tmp %= 256;
+            }
+            buf[0] = tmp;
+        }
+     }
 	
     switch (fPort->StopBits) {
         case 0:
